@@ -1,7 +1,10 @@
 import socket
+import hashlib
 from Crypto.Cipher import AES
 
-obj = AES.new("this is a key123",AES.MODE_CFB,"abcdefghijklmnop")
+password = "some random key"
+key = hashlib.sha256(password).digest()
+obj = AES.new(key, AES.MODE_CFB, "abcdefghijklmnop")
 
 def main():
 	host = "127.0.0.1"
