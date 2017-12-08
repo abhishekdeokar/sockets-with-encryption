@@ -5,8 +5,8 @@ from Crypto.Cipher import AES
 import ssl
 from ssl import PROTOCOL_TLS
 
-keyFile = "privateKey.pem"
-certFile = "sslCert.crt"
+keyFile = "privateKey.pem"	#provide full path to the private key file location
+certFile = "sslCert.crt"	#provide full path to the Certificate file location
 
 KEY = hashlib.sha256("some random password").digest()
 

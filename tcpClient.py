@@ -13,7 +13,7 @@ def main():
 	port = 5001
 
 	s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-	ssl_sock = ssl.wrap_socket(s, cert_reqs=ssl.CERT_REQUIRED, ca_certs='sslCert.crt')
+	ssl_sock = ssl.wrap_socket(s, cert_reqs=ssl.CERT_REQUIRED, ca_certs='sslCert.crt')	#provide full path to the certificate file location
 
 	ssl_sock.connect((host,port))
 
