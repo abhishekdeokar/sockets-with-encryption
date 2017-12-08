@@ -5,8 +5,8 @@ from Crypto.Cipher import AES
 import ssl
 from ssl import PROTOCOL_TLS
 
-keyFile = "/home/maverick/Practice/Socket_Prog/key_cert/privateKey.pem"
-certFile = "/home/maverick/Practice/Socket_Prog/key_cert/sslCert.crt"
+keyFile = "privateKey.pem"
+certFile = "sslCert.crt"
 
 KEY = hashlib.sha256("some random password").digest()
 
