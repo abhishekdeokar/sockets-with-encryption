@@ -4,7 +4,7 @@ TCP Sockets with AES and SSL
 
 This example is an implementation of Socket Programming with addition of SSL and AES implementations using Python. 
 
-Requirements for this implementation are a private key and a server certificate generated using the private, both of which can be generated using openssl.
+Requirements for this implementation are a private key and a server certificate generated using the private key, both of which can be generated using openssl.
 
 The inner layer is of AES encryption. The data to be sent is encrypted and decrypted using AES objects.
 
