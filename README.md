@@ -12,15 +12,19 @@ The outer layer is of SSL. The method ssl.wrap_socket() will wrap the socket wit
 
 ### References:-
 
-sockets implementation:
+Sockets implementation:
+
 	1. https://www.youtube.com/watch?v=XiVVYfgDolU&t=2s
 
 AES encryption guidepoints:
+
 	2. https://eli.thegreenplace.net/2010/06/25/aes-encryption-of-files-in-python-with-pycrypto
 
-key and certificate generation:
+Key and Certificate generation:
+
 	3. Ivan Ristić OpenSSL Cookbook A guide to the most frequently used OpenSSL features and commands
 
-implementing SSL in sockets:
+Implementing SSL in sockets:
+
 	4. http://grantcurell.com/2017/03/10/a-simple-ssl-client-and-server-in-python/
 
