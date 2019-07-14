@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 import socket
 from socket import AF_INET, SOCK_STREAM, SO_REUSEADDR, SOL_SOCKET, SHUT_RDWR
 import hashlib
@@ -5,12 +7,12 @@ from Crypto.Cipher import AES
 import ssl
 from ssl import PROTOCOL_TLS
 
-keyFile = "privateKey.pem"	#provide full path to the private key file location
-certFile = "sslCert.crt"	#provide full path to the Certificate file location
+keyFile = "priv.pem"	#provide full path to the private key file location
+certFile = "cert.crt"	#provide full path to the Certificate file location
 
-KEY = hashlib.sha256("some random password").digest()	#this will convert any pnemonic string which the user wants to choose as password to a 32 bit encrypted object
+KEY = hashlib.sha256(b"some random password").digest()	#this will convert any pnemonic string which the user wants to choose as password to a 32 bit encrypted object
 
-IV = "abcdefghijklmnop"		#Initialization vector should always be 16 bit
+IV = b"abcdefghijklmnop"		#Initialization vector should always be 16 bit
 obj = AES.new(KEY, AES.MODE_CFB, IV)	#creating an object to encrypt our data with
 
 def echo_client(s):
@@ -18,12 +20,12 @@ def echo_client(s):
 		data = s.recv(1024)
 		if not data:
 			break
-		print "recieved from connection: "+str(data)
-		data = str(data).upper()	#converting the received string t upper case
+		print ("recieved from connection: "+str(data))
+		data = data.upper()	#converting the received string t upper case
 		encrypted = obj.encrypt(data)	#encrypting the data to be sent using the AES object we created
-		print "encrypting..."
-		print "encrypted data: "+str(encrypted)
-		print "sending: "+str(data)
+		print ("encrypting...")
+		print ("encrypted data: "+str(encrypted) )
+		print ("sending: "+str(data))
 		s.send(encrypted)
 	s.close()
 
@@ -46,10 +48,10 @@ def main():
 	while True:
 		try:
 			c, addr = s_ssl.accept()
-			print "connected with: "+str(addr)
+			print ("connected with: "+str(addr))
 			echo_client(c)
 		except socket.error as e:
-			print "Error:{0}".format(e)
+			print ("Error:{0}".format(e))
 
 if __name__ == "__main__":
 	main()

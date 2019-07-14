@@ -1,6 +1,6 @@
 #!/bin/sh
 
-openssl genrsa -aes256 -out priv.pem 2048
+openssl genrsa -aes256 -out priv.pem 4096
 cat priv.pem
 openssl rsa -text -in priv.pem
 openssl rsa -in priv.pem -pubout -out pub.pem
