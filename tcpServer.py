@@ -13,19 +13,22 @@ certFile = "cert.crt"									#provide full path to the Certificate file locatio
 KEY = hashlib.sha256(b"some random password").digest()	#this will convert any pnemonic string which the user wants to choose as password to a 32 bit encrypted object
 
 IV = b"abcdefghijklmnop"								#Initialization vector should always be 16 bit
-obj = AES.new(KEY, AES.MODE_CFB, IV)					#creating an object to encrypt our data with
+obj_enc = AES.new(KEY, AES.MODE_CFB, IV)						#creating an object to encrypt our data with
+obj_dec = AES.new(KEY, AES.MODE_CFB, IV)						#creating an object to decrypt our data with
 
 def echo_client(s):
 	while True:
-		data = s.recv(1024)
-		if not data:
+		message_enc = s.recv(1024)
+		if not message_enc:
 			break
-		print ("recieved from connection: "+str(data))
-		data = data.upper()								#converting the received string t upper case
-		encrypted = obj.encrypt(data)					#encrypting the data to be sent using the AES object we created
-		print ("encrypting...")
-		print ("encrypted data: "+str(encrypted) )
+		#print ("recieved from connection: "+str(message_enc))
+		message = obj_dec.decrypt(message_enc)
+		print ("recieved from connection: "+str(message))
+		data = message.upper()								#converting the received string t upper case
 		print ("sending: "+str(data))
+		encrypted = obj_enc.encrypt(data)					#encrypting the data to be sent using the AES object we created
+		#print ("encrypting...")
+		print ("encrypted data: "+str(encrypted))
 		s.send(encrypted)
 	s.close()
 

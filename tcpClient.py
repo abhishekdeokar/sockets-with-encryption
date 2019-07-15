@@ -8,7 +8,8 @@ import ssl
 KEY = hashlib.sha256(b"some random password").digest()		#this will convert any pnemonic string which the user wants to choose as password to a 32 bit encrypted object
 
 IV = b"abcdefghijklmnop"									#Initialization vector should always be 16 bit
-obj = AES.new(KEY, AES.MODE_CFB, IV)						#creating an object to encrypt our data with
+obj_enc = AES.new(KEY, AES.MODE_CFB, IV)						#creating an object to encrypt our data with
+obj_dec = AES.new(KEY, AES.MODE_CFB, IV)						#creating an object to encrypt our data with
 
 def main():
 	host = "127.0.0.1"
@@ -23,11 +24,12 @@ def main():
 	message = input("-> ")
 	while message != 'q':									#using 'q' to quit from the channel created
 		#s.send(message)									is what we would have used in a socket program without ssl
-		ssl_sock.write(message.encode('utf-8'))				#instead of the .send() we use .write() for ssl
+		message_enc = obj_enc.encrypt(message.encode('utf-8'))
+		ssl_sock.write(message_enc)				#instead of the .send() we use .write() for ssl
 		data = ssl_sock.recv(1024)
 		print ("received data: "+str(data))
 		print ("decrypting...")
-		decrypted = obj.decrypt(data)						#using the object we created to decrypt the incoming data
+		decrypted = obj_dec.decrypt(data)						#using the object we created to decrypt the incoming data
 		print ("received from server "+str(decrypted))
 		message = input("-> ")
 
