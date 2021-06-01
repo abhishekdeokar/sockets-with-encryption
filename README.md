@@ -12,39 +12,31 @@ The outer layer is of SSL. The method ssl.wrap_socket() will wrap the socket wit
 This is a rudimentary code to start a channel between a server and a client, the client sends a certain message which is received by the server and the server then simply sends back the case converted message.
 
 ### Usage :-
-1. Change File permissions in the directory
-
+1. Change File permissions in the directory<br>
 	`sudo chmod +x key_cert_gen.sh *.py`
 
-2. Run the Key and Certificate generator
-
+2. Run the Key and Certificate generator<br>
 	`./key_cert_gen.sh`
 
-3. In one terminal
-
+3. In one terminal<br>
 	`./tcpServer.py`
 
-4. In another terminal 
-
+4. In another terminal<br>
 	`./tcpClient.py`
 
 From the client terminal, you can then send any string, if it contains small case letters, they will be converted to upper case on the server side and sent back to the client.
 
 ### References :-
 
-1. Sockets implementation:
-
+1. Sockets implementation:<br>
 	https://www.youtube.com/watch?v=XiVVYfgDolU&t=2s
 
-2. AES encryption guidepoints:
-
+2. AES encryption guidepoints:<br>
 	https://eli.thegreenplace.net/2010/06/25/aes-encryption-of-files-in-python-with-pycrypto
 
-3. Key and Certificate generation:
-
+3. Key and Certificate generation:<br>
 	Ivan Ristić OpenSSL Cookbook A guide to the most frequently used OpenSSL features and commands
 
-4. Implementing SSL in sockets:
-
+4. Implementing SSL in sockets:<br>
 	http://grantcurell.com/2017/03/10/a-simple-ssl-client-and-server-in-python/
 
